@@ -1,10 +1,8 @@
 import Data.List
 
-numLimit = 10
-
-productList = foldl (\acc x -> acc * 10 + x) 0
-
-permutationNums = map productList $ permutations [1..10]
+intList2Num :: [Int] -> Int
+intList2Num [] = 0
+intList2Num (x:xs) = x + 10 * (intList2Num xs)
 
 main :: IO ()
-main = putStrLn . show $ head $ drop 1000000 $ sort $ permutationNums
+main = putStrLn . show $ head $ drop (1000000 - 1) $ sort $ map intList2Num $ permutations [0..9]

@@ -6,7 +6,10 @@ reverseTriangle n = take n [1..] : (reverseTriangle (n - 1))
 triangle = reverse . reverseTriangle
 
 path 1 = [[1]]
-path n = [x:xs| x <- [1..n], xs <- path (n-1), x == (head xs) || x == (head xs) + 1]
+path n = [x:xs| xs <- path (n-1), x <- [1..n], x == (head xs) || x == (head xs) + 1]
 
+pathSum :: [[Integer]] -> [Int] -> Integer
+pathSum _ [] = 0
+pathSum (x:xs) (y:ys) = (x !! y) + (pathSum xs ys)
 
-map reverse (path 15)
+main = putStrLn $ show $ maximum $ map (pathSum a . map (\x -> x - 1) . reverse) (path 15)
