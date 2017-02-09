@@ -7,3 +7,5 @@ base10Extract a = baseExtract a 10
 base2Extract a = baseExtract a 2
 
 palindrome x = reverse x == x
+
+res = sum $ filter (\x -> (palindrome $ base10Extract x) && (palindrome $ base2Extract x)) [1..1000000]
